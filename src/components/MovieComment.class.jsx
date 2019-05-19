@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 import styles from './MovieComment.module.css';
 
-const getWordCount = str => (str ? str.trim().split(' ').length : 0);
-const getIsValid = str => str.length > 0 && getWordCount(str) >= 3;
-
+@observer
 class Comment extends Component {
-  state = {
-    value: '',
-  }
-
-  componentDidMount() {
-    const { comment } = this.props;
-    this.setState({ value: comment });
-  }
-
   render() {
-    const { id, saveComment } = this.props;
-    const { value } = this.state;
-    const isValid = getIsValid(value);
-    const wordCount = getWordCount(value);
+    const {
+      comment: {
+        id, isValid, wordCount, value, saveComment, updateValue,
+      },
+    } = this.props;
     return (
       <>
         <div className="comment">
@@ -28,7 +19,7 @@ class Comment extends Component {
               id={`comment-${id}`}
               className="materialize-textarea"
               value={value}
-              onChange={({ target: { value: newValue } }) => this.setState({ value: newValue })}
+              onChange={updateValue}
             />
             <div className={[styles.wordcount, isValid && styles.valid].join(' ')}>
               {wordCount}

@@ -1,9 +1,18 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import MovieStore from './movie';
-import { movies as JSONMovies } from '../data/movies';
 
 class MoviesStore {
-  @observable movies = JSONMovies.map(movie => new MovieStore(movie));
+  @observable movies = [];
+
+  constructor() {
+    this.fetchMovies();
+  }
+
+  @action fetchMovies = async () => {
+    this.movies = await fetch('//localhost:8000/movies')
+      .then(data => data.json())
+      .then(movies => movies.map(movie => new MovieStore(movie)));
+  }
 }
 
 export default MoviesStore;

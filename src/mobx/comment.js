@@ -12,11 +12,19 @@ class CommentStore {
   }
 
   @computed get isValid() {
-    return this.wordCount >= 3;
+    return this.wordCount >= 3 && this.value !== this.comment;
   }
 
   @action saveComment = () => {
     this.comment = this.value;
+    fetch(`//localhost:8000/movies/${this.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ comment: this.value }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   @action updateValue = ({ target: { value } }) => {
