@@ -1,3 +1,10 @@
+.card {
+  width: 700px;
+  padding: .75em .25em;
+}
+.content {
+  padding: .5em;
+}
 .header {
   border-bottom: 1px solid lightgray;
   margin-bottom: 1em;

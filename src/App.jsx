@@ -1,5 +1,6 @@
 import React from 'react';
-import Movie from './components/MovieCard';
+import MovieList from './components/MovieList';
+import { movies } from './data/movies';
 
 function App() {
   return (
@@ -11,9 +12,7 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className="row">
-        <Movie />
-      </div>
+      <MovieList movies={movies} />
     </div>
   );
 }

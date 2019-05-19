@@ -5,8 +5,25 @@ import styles from './MovieCard.module.css';
 
 class MovieCard extends Component {
   render() {
+    const {
+      title,
+      year,
+      genre,
+      poster,
+      plot,
+    } = this.props;
     return (
-      <div className="card horizontal row col m6 s12">
+      <div
+        className={[
+          'card',
+          'horizontal',
+          'row',
+          'col',
+          'm6',
+          's12',
+          styles.card,
+        ].join(' ')}
+      >
         <div
           className={[
             'card-image',
@@ -16,20 +33,24 @@ class MovieCard extends Component {
           ].join(' ')}
         >
           <img
-            src="https://images-na.ssl-images-amazon.com/images/I/51poKKV63GL.jpg"
+            src={poster}
             alt="poster"
           />
         </div>
         <div className="card-stacked col s9">
-          <div className="card-content">
+          <div className={['card-content', styles.content].join(' ')}>
             <div className={['card-header', styles.header].join(' ')}>
               <div className="card-title">
-              Star Wars: The Last Jedi
-                <span className={styles.year}>(2017)</span>
+                {title}
+                <span className={styles.year}>
+                  (
+                  {year}
+                  )
+                </span>
               </div>
-              <span className={styles.genre}>Action, Adventure, Fantasy </span>
+              <span className={styles.genre}>{genre}</span>
             </div>
-            <p>Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares for battle with the First Order.</p>
+            <p>{plot}</p>
           </div>
         </div>
       </div>
