@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './MovieCard.module.css';
 import Comment from './MovieComment';
 
@@ -8,6 +9,7 @@ class MovieCard extends Component {
   render() {
     const {
       movie: {
+        id,
         title,
         year,
         genre,
@@ -58,7 +60,7 @@ class MovieCard extends Component {
             <p>{plot}</p>
             <Comment comment={comment} />
             <div className="card-actions">
-              <a className="btn indigo accent-2" href="#">Edit movie</a>
+              <Link className="btn indigo accent-2" to={`/edit/${id}`}>Edit movie</Link>
               <button
                 className="btn deep-orange"
                 onClick={removeAction}

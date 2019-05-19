@@ -1,23 +1,45 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
-import MovieList from './components/MovieList';
-import SearchForm from './components/SearchForm';
+import {
+ BrowserRouter as Router, Route, Switch, Link 
+} from 'react-router-dom';
 import stores from './mobx/stores';
+import ListRoute from './routes/List';
+import FormRoute from './routes/Form';
+import DevTools from './devtools';
 
 function App() {
   return (
     <Provider {...stores}>
-      <div className="App">
-        <nav>
-          <div className="nav-wrapper indigo darken-1">
-            <div className="container">
-              <span className="brand-logo">Movies App</span>
+      <Router>
+        <div className="App">
+          <nav>
+            <div className="nav-wrapper indigo darken-1">
+              <div className="container">
+                <Link to="/" className="brand-logo">Movies App</Link>
+              </div>
             </div>
-          </div>
-        </nav>
-        <SearchForm />
-        <MovieList />
-      </div>
+          </nav>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={ListRoute}
+            />
+            <Route
+              exact
+              path="/new"
+              component={FormRoute}
+            />
+            <Route
+              exact
+              path="/edit/:id"
+              component={FormRoute}
+            />
+          </Switch>
+          <DevTools />
+        </div>
+      </Router>
     </Provider>
   );
 }

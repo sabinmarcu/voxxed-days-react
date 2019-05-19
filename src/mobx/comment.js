@@ -8,7 +8,7 @@ class CommentStore {
   @observable value
 
   @computed get wordCount() {
-    return this.value.length > 0 ? this.value.trim().split(' ').length : 0;
+    return this.value && this.value.length > 0 ? this.value.trim().split(' ').length : 0;
   }
 
   @computed get isValid() {
