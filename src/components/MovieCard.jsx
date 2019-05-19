@@ -2,15 +2,18 @@
 
 import React, { Component } from 'react';
 import styles from './MovieCard.module.css';
+import Comment from './MovieComment';
 
 class MovieCard extends Component {
   render() {
     const {
+      id,
       title,
       year,
       genre,
       poster,
       plot,
+      comment,
     } = this.props;
     return (
       <div
@@ -51,6 +54,7 @@ class MovieCard extends Component {
               <span className={styles.genre}>{genre}</span>
             </div>
             <p>{plot}</p>
+            <Comment {...{ comment, id }} />
           </div>
         </div>
       </div>

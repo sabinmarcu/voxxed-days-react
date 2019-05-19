@@ -1,0 +1,15 @@
+.comment {
+  padding: .75em 0;
+}
+
+.comment span {
+  font-weight: bold;
+}
+
+.wordcount {
+  color: firebrick;
+}
+
+.wordcount.valid {
+  color: lightseagreen;
+}
