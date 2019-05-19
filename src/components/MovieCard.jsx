@@ -7,7 +7,6 @@ import Comment from './MovieComment';
 class MovieCard extends Component {
   render() {
     const {
-      id,
       title,
       year,
       genre,
@@ -54,7 +53,7 @@ class MovieCard extends Component {
               <span className={styles.genre}>{genre}</span>
             </div>
             <p>{plot}</p>
-            <Comment {...{ comment, id }} />
+            <Comment comment={comment} />
           </div>
         </div>
       </div>

@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { observer, useObservable } from 'mobx-react-lite';
 import styles from './MovieComment.module.css';
 
-const getWordCount = str => (str ? str.trim().split(' ').length : 0);
-const getIsValid = str => str.length > 0 && getWordCount(str) >= 3;
-
-const Comment = ({ id, comment, saveComment }) => {
-  const [value, setValue] = useState(comment);
-  const [wordCount, setWordCount] = useState(getWordCount(comment));
-  const [isValid, setIsValid] = useState(getIsValid(comment));
-  useEffect(
-    () => {
-      setIsValid(getIsValid(value));
-      setWordCount(getWordCount(value));
-    },
-    [value],
-  );
+const Comment = ({
+  comment: store,
+}) => {
+  const {
+    value, id, saveComment, isValid, wordCount, updateValue,
+  } = useObservable(store);
   return (
     <>
       <div className="comment">
@@ -24,19 +17,19 @@ const Comment = ({ id, comment, saveComment }) => {
             id={`comment-${id}`}
             className="materialize-textarea"
             value={value}
-            onChange={({ target: { value: newValue } }) => setValue(newValue)}
+            onChange={updateValue}
           />
           <div className={[styles.wordcount, isValid && styles.valid].join(' ')}>
             {wordCount}
             {' '}
-words
+              words
           </div>
         </div>
       </div>
       <div className="card-action">
         <button
           className={isValid ? 'btn' : 'btn-flat'}
-          onClick={() => saveComment(value)}
+          onClick={() => saveComment()}
         >
           Save comment
         </button>
@@ -45,4 +38,4 @@ words
   );
 };
 
-export default Comment;
+export default observer(Comment);
