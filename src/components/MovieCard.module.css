@@ -1,0 +1,16 @@
+.header {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 1em;
+}
+.year {
+  font-size: .75em;
+  opacity: .8;
+  margin-left: .25em;
+}
+.genre {
+  display: block;
+  font-size: 1em;  
+}
+.imageWrapper {
+  padding: 0;
+}
