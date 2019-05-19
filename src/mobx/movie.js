@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import CommentStore from './comment';
 
 class MovieStore {
@@ -16,7 +16,10 @@ class MovieStore {
 
   @observable comment;
 
-  constructor(movie) {
+  MoviesStore;
+
+  constructor(movie, store) {
+    this.MoviesStore = store;
     if (movie) {
       Object.entries(movie)
         .forEach(
@@ -24,6 +27,16 @@ class MovieStore {
         );
     }
     this.comment = new CommentStore(this);
+  }
+
+  @action removeAction = () => {
+    fetch(`//localhost:8000/movies/${this.id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(() => this.MoviesStore.fetchMovies());
   }
 }
 

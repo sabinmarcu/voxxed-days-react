@@ -22,13 +22,13 @@ class MoviesStore {
     this.query = value;
   }
 
-  @action fetchMovies = async (searchQuery) => {
+  @action fetchMovies = async (searchQuery = this.query) => {
     const query = searchQuery
       ? `?q=${searchQuery}`
       : '';
     this.movies = await fetch(`//localhost:8000/movies${query}`)
       .then(data => data.json())
-      .then(movies => movies.map(movie => new MovieStore(movie)));
+      .then(movies => movies.map(movie => new MovieStore(movie, this)));
   }
 }
 

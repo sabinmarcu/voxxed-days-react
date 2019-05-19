@@ -5,7 +5,7 @@ import Movie from './MovieCard';
 const MovieList = inject('Movies')(observer(({ Movies: { movies } }) => (
   <div className="section">
     {movies.map(movie => (
-      <Movie key={movie.id} {...movie} />
+      <Movie key={movie.id} movie={movie} />
     ))}
   </div>
 )));

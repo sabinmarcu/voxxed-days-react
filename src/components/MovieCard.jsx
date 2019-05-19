@@ -7,12 +7,15 @@ import Comment from './MovieComment';
 class MovieCard extends Component {
   render() {
     const {
-      title,
-      year,
-      genre,
-      poster,
-      plot,
-      comment,
+      movie: {
+        title,
+        year,
+        genre,
+        poster,
+        plot,
+        removeAction,
+        comment,
+      },
     } = this.props;
     return (
       <div
@@ -54,6 +57,15 @@ class MovieCard extends Component {
             </div>
             <p>{plot}</p>
             <Comment comment={comment} />
+            <div className="card-actions">
+              <a className="btn indigo accent-2" href="#">Edit movie</a>
+              <button
+                className="btn deep-orange"
+                onClick={removeAction}
+              >
+                Delete movie
+              </button>
+            </div>
           </div>
         </div>
       </div>
