@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
 import MovieList from './components/MovieList';
+import SearchForm from './components/SearchForm';
 import stores from './mobx/stores';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             </div>
           </div>
         </nav>
+        <SearchForm />
         <MovieList />
       </div>
     </Provider>
